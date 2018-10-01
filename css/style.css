@@ -1,0 +1,32 @@
+.login{
+
+  text-align: center;
+  margin-top:12%;
+  
+
+}
+
+.main{
+
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS';
+    color:white;
+   
+    width: 30%;
+    height:100%;
+    margin-left: 25%;
+    margin-top: -5%
+}
+
+body{
+
+    
+    background-image: url("./bg.png");
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-position:center;
+    
+
+
+}

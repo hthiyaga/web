@@ -131,7 +131,7 @@ if(isset($_POST['submit'])){
         
         foreach($data_missing as $missing){
             
-            echo "<div class='main'><br><br> $missing  required <br /></div>";
+            echo "<div class='main'><br><br><br><br> $missing  required <br /><br><br></div>";
             
             header("refresh:2; url=login.php");
             

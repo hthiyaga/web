@@ -1,7 +1,7 @@
 <?php  
 
-DEFINE('DB_USER','root');
-DEFINE('DB_PASSWORD', 'Raina123');
+DEFINE('DB_USER','admin');
+DEFINE('DB_PASSWORD', 'monarchs');
 DEFINE('DB_HOST','localhost');
 DEFINE('DB_NAME', 'web_prj');
 

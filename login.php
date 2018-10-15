@@ -30,7 +30,7 @@
  <input type="password" name="password" size="30" value="" />
 <p> 
 <br>
- <input type="submit" class="btn btn-success " style="color:white; font-weight:bold;"  name="submit" value="Login" />
+ <input type="submit" class="btn btn-success " style="color:black; font-weight:bold;"  name="submit" value="Login" />
  </p>
 </div>
 
@@ -41,8 +41,11 @@
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL); 
   session_start();
+  require_once('./mysqli_connect.php');
+
 
 if(isset($_POST['submit'])){
+    global $dbc;
 
     $data_missing = array();
 
@@ -58,7 +61,7 @@ if(isset($_POST['submit'])){
     else {
  
         // Trim white space from the email and store the mail id
-        $mail_id = trim($_POST['email_id']);
+        $mail_id = trim(mysqli_real_escape_string($dbc,$_POST['email_id']));
  
     }
  
@@ -73,7 +76,7 @@ if(isset($_POST['submit'])){
     else {
  
         // Trim white space from the pass and store the pass
-        $password = trim($_POST['password']);
+        $password = trim(mysqli_real_escape_string($dbc,$_POST['password']));
  
     }
 
@@ -109,7 +112,7 @@ if(isset($_POST['submit'])){
             echo "<div class='main'><br><br>Incorrect info <br /></div>";
             
             header("refresh:2; url=login.php");
-            //echo mysqli_error();
+           // echo mysqli_error();
 
             
           

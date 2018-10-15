@@ -21,12 +21,14 @@ include ("./func.php");
 
 <?php
 session_start();
+if(!isset($_SESSION['email_id']))
+  header("Location:login.php");
 ?>
 
-<br/>
 
-    <nav class="navbar navbar-expand-sm navbar-light mb-3" style="background-color:teal;">
-        <div class="container">
+
+    <nav class="navbar navbar-expand-sm navbar-fixed-top navbar-light mb-3" style="background-color:teal; position: fixed;">
+        <div class="container"> 
             <a class="navbar-brand" href="#" style="color:white;">Welcome <?php 
             require_once("./mysqli_connect.php");
     
@@ -45,7 +47,7 @@ session_start();
             ?></a>
             <ul class="navbar-nav" >
                 <li class="nav-item">
-                    <a class="nav-link" href="#" style="color:white;">Home</a>
+                    <a class="nav-link" href="home.php" style="color:white;">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" style="color:white;">
@@ -59,8 +61,9 @@ session_start();
                 </li>
                 
             </ul>
-            </div>
+         </div>  
     </nav>
+  
  <div id="content">
 
    <div id="usertimeline">
@@ -114,7 +117,7 @@ session_start();
       
        echo "<form method='POST'>
     
-              <fieldset>
+              <fieldset style='margin-top:65px;'>
               <label for='exampleTextarea' style='margin-left: 10px;'> It's time to post</label>
               <br><br>
               
@@ -129,10 +132,10 @@ session_start();
 
      if(isset($_POST['pos'])){
         
-   
-    $group_id =  $_GET['id'];
-    $content =$_POST['content'];
-    $mail_id=$_SESSION['email_id'];
+    global $dbc;
+    $group_id =mysqli_real_escape_string($dbc,$_GET['id']);
+    $content =htmlspecialchars(mysqli_real_escape_string($dbc,$_POST['content']));
+    $mail_id=mysqli_real_escape_string($dbc,$_SESSION['email_id']);
     $user_query = "SELECT user_id FROM `users` WHERE email_id='$mail_id'";
   
 
@@ -152,6 +155,7 @@ session_start();
       // echo "posted to timeline";
        $update = "update users set posts='yes' where user_id='$user_id'";
        $r_update=mysqli_query($dbc,$update);
+       
       
     }
 
@@ -162,7 +166,7 @@ session_start();
 
        $group_id =  $_GET['id'];
        
-       $g_posts = "SELECT * FROM `posts` WHERE group_id='$group_id'";
+       $g_posts = "SELECT * FROM `posts` WHERE group_id='$group_id' ORDER BY post_id DESC";
 
        $r_posts =  mysqli_query($dbc,$g_posts);
        while($row_posts=mysqli_fetch_array($r_posts)){
@@ -201,6 +205,9 @@ session_start();
        </div>
        
           ";
+
+      
+
        }
 
 
@@ -213,8 +220,7 @@ session_start();
   }
 
        
-
-
+   
 
  ?>
 

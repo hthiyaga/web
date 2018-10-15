@@ -70,7 +70,7 @@ if(!isset($_SESSION['email_id']))
 
     <div id="groupdetails">
        <br>
-      <pre> <H5 style='margin-left:66px;'   >Groups    <a style='margin-left:8px;' href=# <i class="fas fa-plus"></i> </a></H5></pre>
+      <pre> <H5 style='margin-left:66px;' ><b>Groups</b>    <a style='margin-left:8px;' href=# <i class="fas fa-plus"></i> </a></H5></pre>
        
        <br>
    
@@ -92,7 +92,7 @@ if(!isset($_SESSION['email_id']))
 
            $group_name=$rowg['group_name'];
            $group_id = $rowg['group_id'];
-        echo " <a href='home.php?id=$group_id'> $group_name </a><br> <br>";
+        echo " <a style='color:black;' href='home.php?id=$group_id'> $group_name </a><br> <br>";
 
        }
         
@@ -155,7 +155,7 @@ if(!isset($_SESSION['email_id']))
       // echo "posted to timeline";
        $update = "update users set posts='yes' where user_id='$user_id'";
        $r_update=mysqli_query($dbc,$update);
-       
+
       
     }
 
@@ -215,8 +215,8 @@ if(!isset($_SESSION['email_id']))
   else{
 
     echo" <div id='index'>
-      <H1 style='text-align:center;'>  Select the group </H1>
-      <img src ='./display.png'/></div>";
+      <H1 style='text-align:center; font-family:ink free; font-size:80px;'><b> Please Select The Group To Display </b> </H1>
+      </div>";
   }
 
        

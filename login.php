@@ -4,6 +4,8 @@
 <head>
 <title>Login</title>
 <link rel ="stylesheet" a href="css\style.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
     crossorigin="anonymous">
 </head>
@@ -19,15 +21,16 @@
 <form method="POST" >
 <!--   -->
  <div class="login">
-<div class="main"
- <b>Enter credentials to login</b>
-  
- <p>Email:</p>
-   <input type="text" name="email_id" size="30" value="" />
- 
-  
- <p>Password: </p>
- <input type="password" name="password" size="30" value="" />
+<div class="main">
+<b>Enter credentials to login</b>
+<br>
+<br>
+Email:<br>
+<i class="fas fa-user" style="margin-right: 5px;"></i> <input type="text" name="email_id" size="30" value="" />
+<br>
+<br>
+ Password:<br>
+<i class="fas fa-key" style="margin-right: 5px;"></i> <input type="password" name="password" size="30" value="" />
 <p> 
 <br>
  <input type="submit" class="btn btn-success " style="color:black; font-weight:bold;"  name="submit" value="Login" />

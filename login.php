@@ -104,7 +104,7 @@ if(isset($_POST['submit'])){
       
 
             echo "<div class='main'><br><br><br><br> Login success <br /></div>";
-            header("refresh:1; url=home.php");
+            header("refresh:1; url=home.php?id=1");
             
           
             

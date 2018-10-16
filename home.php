@@ -226,8 +226,10 @@ if(!isset($_SESSION['email_id']))
   else{
 
     echo" <div id='index'>
-      <H1 style='text-align:center; font-family:ink free; font-size:80px;'><b> Please Select The Group To Display </b> </H1>
+      
+        <img src='./bgd.png'></img>
       </div>";
+      // <H1 style='text-align:center; font-family:ink free; font-size:80px;'><b> Please Select The Group To Display </b> </H1>
   }
 
        

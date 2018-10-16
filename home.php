@@ -121,7 +121,7 @@ if(!isset($_SESSION['email_id']))
               <label for='exampleTextarea' style='margin-left: 10px;'> It's time to post</label>
               <br><br>
               
-              <textarea style='width:80%;'  id='content'name='content' placeholder='Type something.... :)'  rows='2' cols='100'></textarea>
+              <textarea style='width:80%;'  id='content'name='content' placeholder='Type something.... :)'  rows='2' cols='100' required></textarea>
 
               <input type='submit' style='margin-top:-30px;'class='btn btn-primary'  name='pos' value='Post' />
               </fieldset>
@@ -131,7 +131,18 @@ if(!isset($_SESSION['email_id']))
       
 
      if(isset($_POST['pos'])){
-        
+
+     
+        if(trim($_POST['content']) == '' || empty($_POST['content'])) {
+            //empty field, do something
+           
+            
+            
+        }
+    
+        else{
+
+
     global $dbc;
     $group_id =mysqli_real_escape_string($dbc,$_GET['id']);
     $content =htmlspecialchars(mysqli_real_escape_string($dbc,$_POST['content']));
@@ -160,7 +171,7 @@ if(!isset($_SESSION['email_id']))
     }
 
    }
-
+}
 
    // Display the posts
 

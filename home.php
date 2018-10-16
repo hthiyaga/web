@@ -227,7 +227,7 @@ if(!isset($_SESSION['email_id']))
 
     echo" <div id='index'>
       
-        <img src='./bgd.png'></img>
+        <img src='./bgd.PNG'></img>
       </div>";
       // <H1 style='text-align:center; font-family:ink free; font-size:80px;'><b> Please Select The Group To Display </b> </H1>
   }

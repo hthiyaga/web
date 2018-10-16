@@ -103,7 +103,7 @@ if(isset($_POST['submit'])){
            $_SESSION['email_id']=$mail_id;
       
 
-            echo "<div class='main'><br><br> Login success <br /></div>";
+            echo "<div class='main'><br><br><br><br> Login success <br /></div>";
             header("refresh:1; url=home.php");
             
           
@@ -112,7 +112,7 @@ if(isset($_POST['submit'])){
             
         } else {
             
-            echo "<div class='main'><br><br>Incorrect info <br /></div>";
+            echo "<div class='main'><br><br><br><br>Incorrect info <br /></div>";
             
             header("refresh:2; url=login.php");
            // echo mysqli_error();

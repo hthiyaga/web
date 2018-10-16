@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2018 at 06:39 AM
+-- Generation Time: Oct 16, 2018 at 05:06 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -65,10 +65,11 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `user_id`, `post_content`, `post_timestamp`, `group_id`) VALUES
-(112, 6, 'asd', '2018-10-15 04:13:13', 1),
-(113, 6, '&lt;b&gt;hi&lt;/b&gt;', '2018-10-15 04:19:40', 1),
-(116, 6, 'asd', '2018-10-15 04:30:22', 1),
-(117, 1, 'awesome', '2018-10-15 04:37:27', 1);
+(129, 1, 'Hey, there? what\'s up?', '2018-10-15 19:26:18', 1),
+(137, 6, 'Bingo amigo', '2018-10-16 02:59:33', 1),
+(138, 7, 'Hello all', '2018-10-16 03:02:10', 1),
+(139, 6, 'Electronics group........!', '2018-10-16 03:02:41', 2),
+(140, 7, 'Is this similar to OLX?', '2018-10-16 03:04:26', 2);
 
 -- --------------------------------------------------------
 
@@ -94,7 +95,8 @@ INSERT INTO `users` (`user_id`, `user_name`, `email_id`, `password`, `posts`) VA
 (3, 'Doc Hudson', 'hornet@rsprings.gov', '@doc', NULL),
 (4, 'Finn McMissile', 'topsecret@agent.org', '@mcmissile', NULL),
 (5, 'Lighting McQueen', 'kachow@rusteze.com', '@mcqueen', NULL),
-(6, 'Hari T', 'hari', 'hari', 'yes');
+(6, 'Hari T', 'hari', 'hari', 'yes'),
+(7, 'Saketh K', 'saketh', 'saketh', 'yes');
 
 -- --------------------------------------------------------
 
@@ -126,7 +128,9 @@ INSERT INTO `user_groups` (`ugroup_id`, `user_id`, `group_id`) VALUES
 (12, 6, 1),
 (13, 6, 2),
 (14, 1, 3),
-(15, 2, 3);
+(15, 2, 3),
+(16, 7, 1),
+(17, 7, 2);
 
 --
 -- Indexes for dumped tables
@@ -170,19 +174,19 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_groups`
 --
 ALTER TABLE `user_groups`
-  MODIFY `ugroup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ugroup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

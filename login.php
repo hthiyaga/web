@@ -34,6 +34,7 @@ Email:<br>
 <p> 
 <br>
  <input type="submit" class="btn btn-success " style="color:black; font-weight:bold;"  name="submit" value="Login" />
+ <a href="signup.php" class="btn btn-primary" style="color:black; font-weight:bold;">Signup</a>
  </p>
 </div>
 
@@ -45,6 +46,7 @@ Email:<br>
   error_reporting(E_ALL); 
   session_start();
   require_once('./mysqli_connect.php');
+
 
 
 if(isset($_POST['submit'])){

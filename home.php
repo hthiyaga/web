@@ -50,7 +50,7 @@ if(!isset($_SESSION['email_id']))
                     <a class="nav-link" href="home.php" style="color:white;">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" style="color:white;">
+                    <a class="nav-link" href="userprofile.php" style="color:white;">
                    
                     Account</a>
                 </li>
@@ -70,7 +70,7 @@ if(!isset($_SESSION['email_id']))
 
     <div id="groupdetails">
        <br>
-      <pre> <H5 style='margin-left:66px;' ><b>Groups</b>    <a style='margin-left:8px;' href=# <i class="fas fa-plus"></i> </a></H5></pre>
+      <pre> <H5 style='margin-left:66px;' ><b>Groups</b>    <a style='margin-left:8px;' href=creategroup.php <i class="fas fa-plus"></i> </a></H5></pre>
        
        <br>
    
@@ -202,7 +202,7 @@ if(!isset($_SESSION['email_id']))
        <div id='dis'>
        <div id= 'posts' style='float:left;' >
         
-       <H6><a href='user_profile.php? user_id=$user_id'>$user_name</a></H6>
+       <H6><a href='userprofile.php?'>$user_name</a></H6>
        </div>
        <p id='tstamp' style='margin-left:100px;'>$post_tstamp</p>
        <p>$content</p>
@@ -210,14 +210,28 @@ if(!isset($_SESSION['email_id']))
        <i class='far fa-thumbs-up'></i>  
        <i style='margin-left:8px;'class='far fa-thumbs-down'></i>  
        <i style='margin-left:8px;'class='fas fa-reply'></i>
-       <a href='reply.php?post_id=$post_id' style='font-size:10px;' >
+       <a data-toggle='collapse' href='#collapse1' style='font-size:10px;' >
           reply</a>
+       <div id='collapse1' class='panel-collapse collapse'>
+       hello
+       </div>
        
        </div>
        
           ";
 
       
+      //reply.php?post_id=$post_id
+          //      <div class='panel-group' id='acc'>
+       //    <a data-toggle='collapse' data-parent='#acc' href='#collapse1' style='font-size:10px;' >
+       //    reply</a>
+       // <div id='collapse1' class='panel-collapse collapse'>
+       // <div class='panel-body'>
+       // <input type='text'>
+       // </div>
+       // </div>
+       // </div>
+       // </div>
 
        }
 
@@ -227,7 +241,7 @@ if(!isset($_SESSION['email_id']))
 
     echo" <div id='index'>
       
-        <img src='./bgd.PNG'></img>
+        <img src='./bgd.png'></img>
       </div>";
       // <H1 style='text-align:center; font-family:ink free; font-size:80px;'><b> Please Select The Group To Display </b> </H1>
   }

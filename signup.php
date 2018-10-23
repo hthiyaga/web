@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login</title>
+<title>Signup</title>
 <link rel ="stylesheet" a href="css\signup.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
         crossorigin="anonymous">
@@ -24,7 +24,7 @@
 </form>
     
 <?php
-ini_set('display_errors', 1);
+  ini_set('display_errors', 1);
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL); 
   session_start();
@@ -96,10 +96,18 @@ if(isset($_POST['submit'])){
         $mail_id=htmlspecialchars(mysqli_real_escape_string($dbc,$_POST['email_id']));
         $pass=htmlspecialchars(mysqli_real_escape_string($dbc,$_POST['pass']));
         $cpass=htmlspecialchars(mysqli_real_escape_string($dbc,$_POST['cpass']));
+        
+         $user_query = "SELECT user_name FROM `users` WHERE user_name='$name'";
+        $user_result= mysqli_query($dbc,$user_query);
+        $row= mysqli_fetch_array($user_result);
+        $usern_id= $row['user_name'];
+
+
         $user_query = "SELECT email_id FROM `users` WHERE email_id='$mail_id'";
         $user_result= mysqli_query($dbc,$user_query);
         $row= mysqli_fetch_array($user_result);
         $usere_id= $row['email_id'];
+
          
        if($pass != $cpass){
 
@@ -107,12 +115,20 @@ if(isset($_POST['submit'])){
 
 
          }
+     
+        else if($name == $usern_id){
+
+          echo "<div style='text-align:center;'><br>Username taken! Enter some other name";
+       }
+
 
        else if($mail_id ==$usere_id){
 
          echo "<div class='main'><br>Email already exists";
 
        }
+
+       
 
 
        else{

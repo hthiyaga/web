@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2018 at 05:06 AM
+-- Generation Time: Oct 23, 2018 at 08:21 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 CREATE DATABASE /*!32312 IF NOT EXISTS*/ `web_prj` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
 USE `web_prj`;
+
 --
 -- Database: `web_prj`
 --
@@ -32,19 +33,21 @@ USE `web_prj`;
 
 CREATE TABLE `groups` (
   `group_id` int(11) NOT NULL,
-  `group_name` text NOT NULL
+  `group_name` text NOT NULL,
+  `privacy` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `groups`
 --
 
-INSERT INTO `groups` (`group_id`, `group_name`) VALUES
-(1, 'GLOBAL'),
-(2, 'Electronics'),
-(3, 'Music'),
-(4, 'Sports'),
-(5, 'Books');
+INSERT INTO `groups` (`group_id`, `group_name`, `privacy`) VALUES
+(1, 'GLOBAL', 'public'),
+(2, 'Electronics', 'private'),
+(3, 'Music', 'private'),
+(4, 'Sports', 'private'),
+(5, 'Books', 'private'),
+(12, 'Awesome', 'public');
 
 -- --------------------------------------------------------
 
@@ -69,7 +72,8 @@ INSERT INTO `posts` (`post_id`, `user_id`, `post_content`, `post_timestamp`, `gr
 (137, 6, 'Bingo amigo', '2018-10-16 02:59:33', 1),
 (138, 7, 'Hello all', '2018-10-16 03:02:10', 1),
 (139, 6, 'Electronics group........!', '2018-10-16 03:02:41', 2),
-(140, 7, 'Is this similar to OLX?', '2018-10-16 03:04:26', 2);
+(140, 7, 'Is this similar to OLX?', '2018-10-16 03:04:26', 2),
+(141, 6, 'Hi', '2018-10-23 02:43:09', 1);
 
 -- --------------------------------------------------------
 
@@ -130,7 +134,8 @@ INSERT INTO `user_groups` (`ugroup_id`, `user_id`, `group_id`) VALUES
 (14, 1, 3),
 (15, 2, 3),
 (16, 7, 1),
-(17, 7, 2);
+(17, 7, 2),
+(19, 6, 12);
 
 --
 -- Indexes for dumped tables
@@ -140,25 +145,33 @@ INSERT INTO `user_groups` (`ugroup_id`, `user_id`, `group_id`) VALUES
 -- Indexes for table `groups`
 --
 ALTER TABLE `groups`
-  ADD PRIMARY KEY (`group_id`);
+  ADD PRIMARY KEY (`group_id`),
+  ADD KEY `group_id` (`group_id`);
 
 --
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
-  ADD PRIMARY KEY (`post_id`);
+  ADD PRIMARY KEY (`post_id`),
+  ADD KEY `post_id` (`post_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `group_id` (`group_id`),
+  ADD KEY `group_id_2` (`group_id`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `user_groups`
 --
 ALTER TABLE `user_groups`
-  ADD PRIMARY KEY (`ugroup_id`);
+  ADD PRIMARY KEY (`ugroup_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `group_id` (`group_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -168,13 +181,13 @@ ALTER TABLE `user_groups`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -186,7 +199,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_groups`
 --
 ALTER TABLE `user_groups`
-  MODIFY `ugroup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ugroup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `posts`
+--
+ALTER TABLE `posts`
+  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`);
+
+--
+-- Constraints for table `user_groups`
+--
+ALTER TABLE `user_groups`
+  ADD CONSTRAINT `user_groups_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `user_groups_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

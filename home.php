@@ -142,7 +142,22 @@ include ("./func.php");
    require_once("./mysqli_connect.php");  
    global $dbc;
    if(isset($_GET['id'])){
+       $uid=$_SESSION['user_id'];
+       $gid = $_GET['id'];
+      $sqlgetgroupid= "SELECT group_id from user_groups where user_id = '$uid' and group_id = '$gid'";
+      $rungetgroupid=mysqli_query($dbc,$sqlgetgroupid);
+      $resultgroupid = mysqli_fetch_array($rungetgroupid);
+      $g_id = $resultgroupid['group_id'];
       
+
+      
+      if($g_id =="")
+      {
+      
+        header("Location:home.php");
+        die();
+      }
+
        echo "<form method='POST'>
     
               <fieldset style='margin-top:75px;'>
@@ -154,6 +169,7 @@ include ("./func.php");
               <input type='submit' style='margin-top:-30px;'class='btn btn-primary'  name='pos' value='Post' />
               </fieldset>
               </form>";
+      
     
   //Insert post
       

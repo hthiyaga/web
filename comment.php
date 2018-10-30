@@ -16,7 +16,7 @@ ini_set('display_errors', 1);
  	  $data =  $_POST['reply'];
     $user_id = $_SESSION['user_id'];
     $post_id = $data['post_id'];
-    $comment = htmlspecialchars(mysqli_real_escape_string($data['comment']);
+    $comment = htmlspecialchars(mysqli_real_escape_string($dbc,$data['comment']));
 
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2018 at 05:55 AM
+-- Generation Time: Oct 30, 2018 at 06:17 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 CREATE DATABASE /*!32312 IF NOT EXISTS*/ `web_prj` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
 USE `web_prj`;
+
 --
 -- Database: `web_prj`
 --
@@ -37,6 +38,14 @@ CREATE TABLE `comments` (
   `comment` text NOT NULL,
   `comment_Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`comment_id`, `post_id`, `user_id`, `comment`, `comment_Timestamp`) VALUES
+(142, 140, 1, '', '2018-10-30 05:26:26'),
+(143, 140, 1, '', '2018-10-30 05:26:34');
 
 -- --------------------------------------------------------
 
@@ -57,12 +66,9 @@ CREATE TABLE `groups` (
 
 INSERT INTO `groups` (`group_id`, `group_name`, `owner_id`, `privacy`) VALUES
 (1, 'Global', 0, 'public'),
-(2, 'Electronics', 0, 'private'),
-(3, 'Music', 0, 'private'),
-(21, 'Soccer', 0, 'public'),
-(50, 'paintball', 6, 'private'),
-(51, 'sample', 6, 'public'),
-(52, 'sample1', 6, 'public');
+(2, 'Electronics', 1, 'private'),
+(3, 'Music', 2, 'private'),
+(54, 'Sports', 6, 'public');
 
 -- --------------------------------------------------------
 
@@ -88,7 +94,7 @@ INSERT INTO `posts` (`post_id`, `user_id`, `post_content`, `post_timestamp`, `gr
 (138, 7, 'Hello all', '2018-10-16 03:02:10', 1),
 (139, 6, 'Electronics group........!', '2018-10-16 03:02:41', 2),
 (140, 7, 'Is this similar to OLX?', '2018-10-16 03:04:26', 2),
-(141, 6, 'Hi', '2018-10-23 02:43:09', 1);
+(146, 1, 'I couldn\'t sleep properly for a week due to milestone 2', '2018-10-30 17:04:42', 1);
 
 -- --------------------------------------------------------
 
@@ -110,7 +116,8 @@ INSERT INTO `rating_info` (`user_id`, `post_id`, `rating_action`) VALUES
 (1, 141, 'dislike'),
 (2, 141, 'dislike'),
 (6, 140, 'like'),
-(6, 141, 'dislike');
+(6, 141, 'dislike'),
+(6, 146, 'like');
 
 -- --------------------------------------------------------
 
@@ -174,12 +181,9 @@ INSERT INTO `user_groups` (`ugroup_id`, `user_id`, `group_id`) VALUES
 (15, 2, 3),
 (16, 7, 1),
 (17, 7, 2),
-(33, 6, 21),
-(90, 6, 50),
-(91, 1, 50),
-(95, 1, 21),
-(113, 2, 52),
-(119, 20, 1);
+(119, 20, 1),
+(122, 2, 54),
+(123, 6, 54);
 
 --
 -- Indexes for dumped tables
@@ -237,19 +241,19 @@ ALTER TABLE `user_groups`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 
 --
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -261,7 +265,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_groups`
 --
 ALTER TABLE `user_groups`
-  MODIFY `ugroup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+  MODIFY `ugroup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
 -- Constraints for dumped tables

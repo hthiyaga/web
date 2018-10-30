@@ -52,19 +52,8 @@ include ("./func.php");
                     <a class="nav-link" href="home.php" style="color:white;">Home</a>
                 </li>
                 <li class="nav-item">
-                      <div class="dropdown show">
-                      <a class="btn dropdown-toggle nav-link" style="color:white;href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Account
-                      </a>
-
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="userprofile.php">Profile</a>
-                       
-                        <!--  -->
-
-                                 <!--  -->
-                      </div>
-                    </div>
+                  <a class="nav-link" href="userprofile.php" style="color:white;">Account</a>
+                      
                     
 
                 </li>
@@ -88,7 +77,7 @@ include ("./func.php");
  <div class="dropdown show" > 
       <a class="btn dropdown-toggle " style='margin-left:8px;' href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" <i class="fas fa-plus"></i><b>Groups</b> </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="Creategroup.php">Create Group</a>
+                        <a class="dropdown-item" href="creategroup.php">Create Group</a>
                         <a class="dropdown-item" href="joinpublicgroup.php">Join/invite to Group</a>
                         <!--  -->
 

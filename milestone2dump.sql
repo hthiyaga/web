@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2018 at 08:21 PM
+-- Generation Time: Oct 30, 2018 at 05:55 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -20,10 +20,23 @@ SET time_zone = "+00:00";
 CREATE DATABASE /*!32312 IF NOT EXISTS*/ `web_prj` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
 USE `web_prj`;
-
 --
 -- Database: `web_prj`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `comment_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `comment_Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -34,6 +47,7 @@ USE `web_prj`;
 CREATE TABLE `groups` (
   `group_id` int(11) NOT NULL,
   `group_name` text NOT NULL,
+  `owner_id` int(11) NOT NULL,
   `privacy` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -41,13 +55,14 @@ CREATE TABLE `groups` (
 -- Dumping data for table `groups`
 --
 
-INSERT INTO `groups` (`group_id`, `group_name`, `privacy`) VALUES
-(1, 'GLOBAL', 'public'),
-(2, 'Electronics', 'private'),
-(3, 'Music', 'private'),
-(4, 'Sports', 'private'),
-(5, 'Books', 'private'),
-(12, 'Awesome', 'public');
+INSERT INTO `groups` (`group_id`, `group_name`, `owner_id`, `privacy`) VALUES
+(1, 'Global', 0, 'public'),
+(2, 'Electronics', 0, 'private'),
+(3, 'Music', 0, 'private'),
+(21, 'Soccer', 0, 'public'),
+(50, 'paintball', 6, 'private'),
+(51, 'sample', 6, 'public'),
+(52, 'sample1', 6, 'public');
 
 -- --------------------------------------------------------
 
@@ -78,6 +93,28 @@ INSERT INTO `posts` (`post_id`, `user_id`, `post_content`, `post_timestamp`, `gr
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `rating_info`
+--
+
+CREATE TABLE `rating_info` (
+  `user_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `rating_action` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rating_info`
+--
+
+INSERT INTO `rating_info` (`user_id`, `post_id`, `rating_action`) VALUES
+(1, 141, 'dislike'),
+(2, 141, 'dislike'),
+(6, 140, 'like'),
+(6, 141, 'dislike');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -86,21 +123,24 @@ CREATE TABLE `users` (
   `user_name` varchar(30) NOT NULL,
   `email_id` varchar(30) NOT NULL,
   `password` varchar(30) NOT NULL,
-  `posts` text
+  `user_image` text NOT NULL,
+  `posts` text,
+  `comments` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `email_id`, `password`, `posts`) VALUES
-(1, 'Tow Mater', 'mater@rsprings.gov', '@mater', 'yes'),
-(2, 'Sally Carrera', 'porsche@rsprings.gov', '@sally', NULL),
-(3, 'Doc Hudson', 'hornet@rsprings.gov', '@doc', NULL),
-(4, 'Finn McMissile', 'topsecret@agent.org', '@mcmissile', NULL),
-(5, 'Lighting McQueen', 'kachow@rusteze.com', '@mcqueen', NULL),
-(6, 'Hari T', 'hari', 'hari', 'yes'),
-(7, 'Saketh K', 'saketh', 'saketh', 'yes');
+INSERT INTO `users` (`user_id`, `user_name`, `email_id`, `password`, `user_image`, `posts`, `comments`) VALUES
+(1, 'Tow Mater', 'mater@rsprings.gov', '@mater', '', 'yes', 'yes'),
+(2, 'Sally Carrera', 'porsche@rsprings.gov', '@sally', '', NULL, ''),
+(3, 'Doc Hudson', 'hornet@rsprings.gov', '@doc', '', NULL, ''),
+(4, 'Finn McMissile', 'topsecret@agent.org', '@mcmissile', '', NULL, ''),
+(5, 'Lighting McQueen', 'kachow@rusteze.com', '@mcqueen', '', NULL, ''),
+(6, 'Hari T', 'hari', 'hari', '6.jpg', 'yes', 'yes'),
+(7, 'Saketh K', 'saketh', 'saketh', '', 'yes', ''),
+(20, 'random', 'random@odu', 'asd', '', 'NULL', '');
 
 -- --------------------------------------------------------
 
@@ -128,18 +168,28 @@ INSERT INTO `user_groups` (`ugroup_id`, `user_id`, `group_id`) VALUES
 (8, 4, 1),
 (9, 4, 3),
 (10, 5, 1),
-(11, 5, 4),
 (12, 6, 1),
 (13, 6, 2),
 (14, 1, 3),
 (15, 2, 3),
 (16, 7, 1),
 (17, 7, 2),
-(19, 6, 12);
+(33, 6, 21),
+(90, 6, 50),
+(91, 1, 50),
+(95, 1, 21),
+(113, 2, 52),
+(119, 20, 1);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`comment_id`);
 
 --
 -- Indexes for table `groups`
@@ -157,6 +207,12 @@ ALTER TABLE `posts`
   ADD KEY `user_id` (`user_id`),
   ADD KEY `group_id` (`group_id`),
   ADD KEY `group_id_2` (`group_id`);
+
+--
+-- Indexes for table `rating_info`
+--
+ALTER TABLE `rating_info`
+  ADD UNIQUE KEY `UC_rating_info` (`user_id`,`post_id`);
 
 --
 -- Indexes for table `users`
@@ -178,10 +234,16 @@ ALTER TABLE `user_groups`
 --
 
 --
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+
+--
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -193,13 +255,13 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `user_groups`
 --
 ALTER TABLE `user_groups`
-  MODIFY `ugroup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ugroup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 
 --
 -- Constraints for dumped tables

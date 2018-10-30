@@ -2,8 +2,8 @@
      
     
     border:1px solid teal;
-    margin-left: 300px;
-    margin-top: 40px;
+    margin-left: 400px;
+    margin-top: 10px;
     margin-right: 200px;
     margin-bottom: 300px;
     font-weight: bold;
@@ -15,9 +15,9 @@
 
 .align{
     
-margin-left: 50px;
-margin-right: 60px;
-margin-top: 50px;
+margin-left: 100px;
+margin-right: 100px;
+margin-top: 20px;
 margin-bottom: 50px;
 }
 #text{
@@ -31,6 +31,13 @@ margin-bottom: 50px;
     border-radius: 4px;
     box-sizing: border-box;
 
+}
+
+#icon{
+
+
+    margin-top: 60px;
+    margin-left:70px;
 }
 
 .multiselect {

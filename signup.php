@@ -135,9 +135,18 @@ if(isset($_POST['submit'])){
 
            $insert = "insert into users(user_name,email_id,password,posts) values('$name','$mail_id', '$pass','NULL')";
            $run = mysqli_query($dbc,$insert);
+
+           $sqlgetuserid = "SELECT user_id from users where user_name='$name'";
+           $rungetuserid = mysqli_query($dbc,$sqlgetuserid);
+           $resultgetuserid = mysqli_fetch_array($rungetuserid);
+           $user_id = $resultgetuserid['user_id'];
+
+
+           $insertg= "INSERT into user_groups(user_id, group_id) VALUES ('$user_id','1')";
+           $rung=mysqli_query($dbc,$insertg);
            echo "<div class='main' style='margin-left:60px;'> sign in success</div>";
            $_SESSION['email_id']=$mail_id;
-           header("refresh:1; url=home.php");
+          header("refresh:1; url=index.php");
            
             
         } 

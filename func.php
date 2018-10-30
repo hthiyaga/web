@@ -175,8 +175,8 @@ function getpost(){
 
        $string=$string."<form  method='POST' id = 'comment-form".$post_id."' >";
              $string=$string."<input type='hidden' name ='username'  value = ".$user_id. ">";
-       $string=$string. "<textarea style='width:20%;'   name='content' placeholder='Leave a comment'  rows='1' cols='100' required></textarea>";
-       $string=$string."<input type='submit' style='width:25%;height:34px;margin-top:-20px;'id =". $post_id ." class='btn btn-success submit_cmt'  name='reply'  value='reply' / ><i style='margin-left:8px;'class='fas fa-pencil-alt'></i></form>";
+       $string=$string. "<textarea style='width:60%;'   name='content' placeholder='Leave a comment'  rows='1' cols='100' required></textarea>";
+       $string=$string."<input type='submit' style='width:15%;height:34px;margin-top:-20px;'id =". $post_id ." class='btn btn-success submit_cmt'  name='reply'  value='reply' / ><i style='margin-left:8px;'class='fas fa-pencil-alt'></i></form>";
 
         $string=$string. "</div>";   
         $string=$string. " </div>"; 
@@ -265,6 +265,21 @@ $user_id= $rowu['user_id'];
   }
 }
 
+function getusergroupid($group_id){
 
+global $dbc;
+if(!session_start())
+{
+  session_start();
+}
+     $user_id= $_SESSION['user_id'];
+      $sqlgetgroupid= "SELECT * from user_groups where user_id ='$user_id' and group_id ='$group_id'";
+      $result=mysqli_query($dbc,$sqlgetgroupid);
+        if (mysqli_num_rows($result) > 0) {
+        return true;
+      }else{
+        return false;
+  }
+}
 
 ?>

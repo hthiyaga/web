@@ -29,7 +29,15 @@
      
      $join=$join."<H4 style='text-align: center;'> Join / Invite to Groups </H4><br><br>";
      $join=$join."Select Group:";
-     $sql = "SELECT group_name,privacy FROM groups WHERE privacy='public' and group_name!='Global' or owner_id='$user_id'";
+     if($user_id !=20) {
+
+        $sql = "SELECT group_name,privacy FROM groups WHERE privacy='public' and group_name!='Global' or owner_id='$user_id'";
+     }
+     else{
+              $sql = "SELECT group_name,privacy FROM groups";
+
+     }
+     
      $run = mysqli_query($dbc,$sql);
       $join=$join."<select id='myselect'>";
      while( $result= mysqli_fetch_array($run)){

@@ -39,7 +39,7 @@
               	$dp =$row_user['user_image'];
               }
          
-        $g_name = "SELECT groups.group_name FROM `groups` INNER JOIN `user_groups` where user_groups.user_id='$user_id' AND groups.group_id=user_groups.group_id AND groups.privacy='public' and groups.group_name!='Global'";
+        $g_name = "SELECT groups.group_name,groups.group_id FROM `groups` INNER JOIN `user_groups` where user_groups.user_id='$user_id' AND groups.group_id=user_groups.group_id AND groups.privacy='public' and groups.group_name!='Global'";
       	 $gn_result= mysqli_query($dbc,$g_name);
       	 
        $profile='';
@@ -58,8 +58,53 @@
        while( $rowg= mysqli_fetch_array($gn_result)){
           
            $group_name=$rowg['group_name'];
+           $group_id = $rowg['group_id'];
            
-           	$profile=$profile."<li>$group_name</li><br><br>";
+           	$profile=$profile."<li>$group_name  ";
+
+          $countsql = "select count(*) from posts where user_id = '$user_id' and group_id ='$group_id'";
+            $cnt_result= mysqli_query($dbc,$countsql);
+            $row_count= mysqli_fetch_array($cnt_result);
+             $count = $row_count['count(*)'];
+            
+            if($count >2)
+            {
+                  for($i =1; $i<=5; $i++ )
+                  {
+                    $profile=$profile."<i class='fas fa-star' style='color:orange'></i>";
+                  }
+                    $profile=$profile."100%</li> <br>";
+
+            }
+
+            else if($count >=1 && $count<2){
+
+                 for($i =1; $i<=1; $i++ )
+                  {
+
+                     for($j =1; $j<=3; $j++ )
+                     {
+                       $profile=$profile."<i class='fas fa-star' style='color:orange'></i>";
+                      }
+                    
+                     $profile=$profile."<i class='far fa-star'></i>";
+                     $profile=$profile."<i class='far fa-star'></i>";
+                  }
+                  $profile=$profile."70%</li> <br>";
+
+            }
+            else{
+                    for($i =1; $i<=5; $i++ )
+                  {
+                    $profile=$profile."<i class='far fa-star'></i>";
+                  }
+                  $profile=$profile."0%</li> <br>";
+
+            } 
+
+           
+          
+
            
        
        }

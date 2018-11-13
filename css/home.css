@@ -51,7 +51,7 @@ margin-top:2px;
 	height:100%;
 	border:1px solid black;
 	position: fixed;
-	margin-top: 67px;
+	margin-top: 65px;
 	margin-left:-10px;
 }
 
@@ -80,15 +80,26 @@ margin-top: 250px;
 }
 
 
-#dis{
+.dis{
         /*#F0F9E1*/
 	    margin-left: 11px;
 	    border:1px solid teal ;
 	    background-color: white;
 
 }
+
+
 #tstamp{
 
 	font-size: 12px;
 	 color:#A9AAA6;
 }
+
+.search{
+
+
+	margin-top: 5px;
+	size:20;
+}
+
+

@@ -122,24 +122,24 @@ include ("./func.php");
            $group_name=$rowg['group_name'];
            $group_id = $rowg['group_id'];
         echo " <a style='color:white;' href='home.php?id=$group_id' id=".$group_id." class='group_details'> $group_name </a>";
-        if($_SESSION['user_id'] == '6') 
-        {
-              echo "&nbsp;";
-              if (archive($group_id) == true){
+//         if($_SESSION['user_id'] == '6') 
+//         {
+//               echo "&nbsp;";
+//               if (archive($group_id) == true){
 
-                echo "<i class='fas fa-unlock arch' data-id=". $group_id . " ></i>";
+//                 echo "<i class='fas fa-unlock arch' data-id=". $group_id . " ></i>";
               
-              }
-              else{
+//               }
+//               else{
 
                 
-                echo "<i class='fas fa-archive arch' data-id=". $group_id . "></i>";
-              }
+//                 echo "<i class='fas fa-archive arch' data-id=". $group_id . "></i>";
+//               }
               
              
              
 
-        }
+//         }
         echo "<br><br>";
 
        }

@@ -29,7 +29,7 @@
      
      $join=$join."<H4 style='text-align: center;'> Join / Invite to Groups </H4><br><br>";
      $join=$join."Select Group:";
-     if($user_id !=20) {
+     if($user_id !=6) {
 
         $sql = "SELECT group_name,privacy FROM groups WHERE privacy='public' and group_name!='Global' or owner_id='$user_id'";
      }

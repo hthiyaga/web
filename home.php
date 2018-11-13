@@ -122,7 +122,7 @@ include ("./func.php");
            $group_name=$rowg['group_name'];
            $group_id = $rowg['group_id'];
         echo " <a style='color:white;' href='home.php?id=$group_id' id=".$group_id." class='group_details'> $group_name </a>";
-        if($_SESSION['user_id'] == 6) 
+        if($_SESSION['user_id'] == '6') 
         {
               echo "&nbsp;";
               if (archive($group_id) == true){

@@ -11,6 +11,7 @@
     crossorigin="anonymous">
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 
@@ -63,19 +64,25 @@ include ("./func.php");
 
                 </li>
                 <li class="nav-item" >
-                <form action="/action_page.php" >
-                <input type="text" class ="search" placeholder="Search.." name="search">
-                <div id ="searchbar"> </div>
                 
-                </form>
+                
+                 
+                
+               
                 </li>
                 <li class="nav-item" >
                     <a class="nav-link" href="logout.php" style="color:white;">
                    
                     Logout</a>
                 </li>
+                <li class="nav-item" >
+                    <a class="nav-link" href="help.html" style="color:white;">
+                   
+                    <i class="fas fa-info"></i></a>
+                </li>
                 
             </ul>
+
          </div>  
     </nav>
   
@@ -91,18 +98,22 @@ include ("./func.php");
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="creategroup.php">Create Group</a>
                         <a class="dropdown-item" href="joinpublicgroup.php">Join/invite to Group</a>
-                        <!--  -->
+                        <?php 
+                         require_once("./mysqli_connect.php");  
+                         global $dbc;
+                         $user_id = $_SESSION['user_id'];
+                         if($user_id == '20') 
+                         {
+                           echo "<a class='dropdown-item' href='removeusers.php'>Remove users from a group</a>";
+                         }
 
-                                 <!--  -->
-                      </div>
-                    </div>
+                        ?>
+                        
 
-     
-        
-                      
-
-                    
-       <br>
+        </div>
+ </div>
+    
+<br>
    
    <H6>
   
@@ -122,29 +133,32 @@ include ("./func.php");
            $group_name=$rowg['group_name'];
            $group_id = $rowg['group_id'];
         echo " <a style='color:white;' href='home.php?id=$group_id' id=".$group_id." class='group_details'> $group_name </a>";
-//         if($_SESSION['user_id'] == '6') 
-//         {
-//               echo "&nbsp;";
-//               if (archive($group_id) == true){
+        if($user_id == '20') 
+        {
+              echo "&nbsp;";
+              if (archive($group_id) == true){
 
-//                 echo "<i class='fas fa-unlock arch' data-id=". $group_id . " ></i>";
+                echo "<i class='fas fa-unlock arch' data-id=". $group_id . " ></i>";
               
-//               }
-//               else{
+              }
+              else{
 
                 
-//                 echo "<i class='fas fa-archive arch' data-id=". $group_id . "></i>";
-//               }
+                echo "<i class='fas fa-archive arch' data-id=". $group_id . "></i>";
+              }
               
              
              
 
-//         }
+        }
         echo "<br><br>";
 
        }
+
         
        ?>
+      <textarea class ="search"  id = "search" placeholder="Search.."name="search" rows="2"></textarea>
+       <div id ='searchbar' style="width: 100%;"></div>
        
   </H6>
     </div>
@@ -157,10 +171,13 @@ include ("./func.php");
 
  <div class="clearfix" id='darea'>
 
+
     <?php
    require_once("./mysqli_connect.php");  
    global $dbc;
+
    echo "<div id = 'displayposts'>";
+
    // if(isset($_GET['id'])){
    //     $uid=$_SESSION['user_id'];
    //     $gid = $_GET['id'];
@@ -198,17 +215,21 @@ include ("./func.php");
 
    // }
   // else{
-
+   
     echo" <div id='index'>
+
       
         <img src='./bgd.PNG'></img>
       </div>";
-      echo "<div id='dpost'></div>";
+      echo "<div id='dpost' style='margin-bottom:10px;'></div>";
+      echo "<div id='loadmore' style='margin-left:280px;'></div>";
+      echo "<div id ='pagination_data'></div>";
 
 // }
 
 
 echo "</div>"; 
+
 ?>
 
 
@@ -218,6 +239,7 @@ echo "</div>";
     </div>
     </div>
      <script src="script.js"></script>
+     <script src="pag.js"></script>
    
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>

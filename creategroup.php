@@ -169,7 +169,7 @@
                 $insert = "insert into user_groups(user_id,group_id) values('$user_id','$group_id')";
                 $run = mysqli_query($dbc,$insert);
 
-   if($user_id != 6)
+   if($user_id != '20')
    {
 
                 $insertadmin = "insert into user_groups(user_id,group_id) values('20','$group_id')";

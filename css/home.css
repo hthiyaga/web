@@ -100,6 +100,35 @@ margin-top: 250px;
 
 	margin-top: 5px;
 	size:20;
+	border-radius: 10px;
 }
 
+#loadmore{
+
+	margin-left: 100px;
+	
+}
+
+
+.add{
+
+	margin-top: -30px;
+}
+
+.fa-code{
+
+	float:right;
+	margin-top: -50px;
+	margin-right: 57px;
+	cursor:pointer;
+}
+
+
+.fa-camera{
+
+	float:right;
+	margin-top: -50px;
+	margin-right: 20px;
+	cursor:pointer;
+}
 

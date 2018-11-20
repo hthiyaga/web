@@ -138,13 +138,13 @@ include ("./func.php");
               echo "&nbsp;";
               if (archive($group_id) == true){
 
-                echo "<i class='fas fa-unlock arch' data-id=". $group_id . " ></i>";
+                echo "<i class='fas fa-unlock arch' style='float:right; margin-right:15px;' data-id=". $group_id . " ></i>";
               
               }
               else{
 
                 
-                echo "<i class='fas fa-archive arch' data-id=". $group_id . "></i>";
+                echo "<i class='fas fa-archive arch' style='float:right; margin-right:15px;' data-id=". $group_id . "></i>";
               }
               
              

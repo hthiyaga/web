@@ -79,12 +79,13 @@
                   for($i =1; $i<=5; $i++ )
                   {
                     $profile=$profile."<i class='fas fa-star' style='color:orange'></i>";
+
                   }
                     $profile=$profile."100%</li> <br>";
 
             }
 
-            else if($count1 >=2 && $count<2){
+            else if($count1 >=2 && $count==1){
 
                  for($i =1; $i<=1; $i++ )
                   {
@@ -92,12 +93,30 @@
                      for($j =1; $j<=3; $j++ )
                      {
                        $profile=$profile."<i class='fas fa-star' style='color:orange'></i>";
+
                       }
                     
                      $profile=$profile."<i class='far fa-star'></i>";
                      $profile=$profile."<i class='far fa-star'></i>";
                   }
                   $profile=$profile."70%</li> <br>";
+
+            }
+
+            else if(($count1 >=1 && $count1<2) && ($count >=1)){
+
+                 for($i =1; $i<=1; $i++ )
+                  {
+
+                     for($j =1; $j<=2; $j++ )
+                     {
+                       $profile=$profile."<i class='fas fa-star' style='color:orange'></i>";
+                      }
+                     $profile=$profile."<i class='fas fa-star-half' style='color:orange'></i>";
+                     $profile=$profile."<i class='far fa-star'></i>";
+                     $profile=$profile."<i class='far fa-star'></i>";
+                  }
+                  $profile=$profile."50%</li> <br>";
 
             }
             else{

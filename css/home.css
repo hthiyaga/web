@@ -132,3 +132,16 @@ margin-top: 250px;
 	cursor:pointer;
 }
 
+.fa-link{
+
+	float:right;
+	margin-top: -50px;
+	margin-right: -15px;
+	cursor:pointer;
+}
+
+pre{
+
+	 overflow: auto;
+   
+}

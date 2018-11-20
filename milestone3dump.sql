@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2018 at 05:47 AM
+-- Generation Time: Nov 20, 2018 at 06:54 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 CREATE DATABASE /*!32312 IF NOT EXISTS*/ `web_prj` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
 USE `web_prj`;
+
 
 --
 -- Database: `web_prj`
@@ -51,7 +52,10 @@ INSERT INTO `archive_info` (`arch_id`, `group_id`, `archive_action`) VALUES
 (13, 10, 'unarchive'),
 (14, 11, 'unarchive'),
 (15, 12, 'unarchive'),
-(16, 13, 'unarchive');
+(16, 13, 'unarchive'),
+(17, 14, 'unarchive'),
+(18, 15, 'unarchive'),
+(19, 16, 'archive');
 
 -- --------------------------------------------------------
 
@@ -88,9 +92,7 @@ INSERT INTO `groups` (`group_id`, `group_name`, `owner_id`, `privacy`) VALUES
 (1, 'Global', 0, 'public'),
 (2, 'Electronics', 1, 'private'),
 (3, 'Music', 2, 'private'),
-(4, 'Bingo', 6, 'public'),
-(11, 'soccer', 6, 'public'),
-(13, 'paintball', 6, 'public');
+(4, 'Bingo', 6, 'public');
 
 -- --------------------------------------------------------
 
@@ -103,6 +105,8 @@ CREATE TABLE `posts` (
   `user_id` int(11) NOT NULL,
   `post_content` text NOT NULL,
   `code_content` text NOT NULL,
+  `image_content` text NOT NULL,
+  `link_content` text NOT NULL,
   `post_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `group_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -111,16 +115,13 @@ CREATE TABLE `posts` (
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`post_id`, `user_id`, `post_content`, `code_content`, `post_timestamp`, `group_id`) VALUES
-(140, 7, 'Is this similar to OLX?', '', '2018-10-16 03:04:26', 2),
-(317, 6, 'Hello people', '', '2018-11-13 21:24:56', 4),
-(325, 6, '1', '', '2018-11-15 00:12:02', 1),
-(328, 6, '4', '', '2018-11-15 00:12:23', 1),
-(378, 20, 'asd', '', '2018-11-18 00:50:16', 11),
-(386, 20, '5', '', '2018-11-18 03:39:25', 1),
-(387, 20, '6', '', '2018-11-18 03:39:27', 1),
-(388, 20, '7', '', '2018-11-18 03:39:29', 1),
-(393, 20, 's', '', '2018-11-18 04:21:20', 4);
+INSERT INTO `posts` (`post_id`, `user_id`, `post_content`, `code_content`, `image_content`, `link_content`, `post_timestamp`, `group_id`) VALUES
+(140, 7, 'Is this similar to OLX?', '', '', '', '2018-10-16 03:04:26', 2),
+(317, 6, 'Hello people', '', '', '', '2018-11-13 21:24:56', 4),
+(393, 20, 's', '', '', '', '2018-11-18 04:21:20', 4),
+(394, 20, 'asd', '', '', '', '2018-11-18 04:59:22', 4),
+(451, 6, 'Third milestone is due....:(', '', '', '', '2018-11-20 05:24:42', 1),
+(452, 1, 'Thanksgiving holidays.......! yaaay', '', '', '', '2018-11-20 05:25:30', 1);
 
 -- --------------------------------------------------------
 
@@ -150,9 +151,11 @@ INSERT INTO `rating_info` (`user_id`, `post_id`, `rating_action`) VALUES
 (6, 279, 'dislike'),
 (6, 280, 'dislike'),
 (6, 281, 'like'),
+(6, 317, 'like'),
 (6, 337, 'like'),
 (6, 387, 'like'),
 (6, 388, 'like'),
+(6, 393, 'like'),
 (20, 193, 'like'),
 (20, 197, 'like'),
 (20, 208, 'dislike'),
@@ -160,8 +163,8 @@ INSERT INTO `rating_info` (`user_id`, `post_id`, `rating_action`) VALUES
 (20, 211, 'like'),
 (20, 249, 'like'),
 (20, 267, 'like'),
-(20, 317, 'dislike'),
-(20, 377, 'dislike');
+(20, 377, 'dislike'),
+(20, 393, 'dislike');
 
 -- --------------------------------------------------------
 
@@ -191,7 +194,8 @@ INSERT INTO `users` (`user_id`, `user_name`, `email_id`, `password`, `user_image
 (5, 'Lighting McQueen', 'kachow@rusteze.com', '@mcqueen', '', NULL, ''),
 (6, 'Hari T', 'hari', 'hari', '6.png', 'yes', 'yes'),
 (7, 'Saketh K', 'saketh', 'saketh', '', 'yes', ''),
-(20, 'admin', 'admin', 'admin', '', 'yes', 'yes');
+(20, 'admin', 'admin', 'admin', '', 'yes', 'yes'),
+(21, 'Mack Truck', 'mack@rusteze.com', '@mack', '', 'yes', '');
 
 -- --------------------------------------------------------
 
@@ -229,12 +233,7 @@ INSERT INTO `user_groups` (`ugroup_id`, `user_id`, `group_id`) VALUES
 (121, 20, 4),
 (122, 20, 2),
 (123, 20, 3),
-(134, 6, 11),
-(135, 20, 11),
-(137, 6, 13),
-(138, 20, 13),
-(139, 7, 13),
-(140, 7, 1);
+(146, 21, 1);
 
 --
 -- Indexes for dumped tables
@@ -298,37 +297,37 @@ ALTER TABLE `user_groups`
 -- AUTO_INCREMENT for table `archive_info`
 --
 ALTER TABLE `archive_info`
-  MODIFY `arch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `arch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220;
 
 --
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=394;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=453;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `user_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `user_groups`
 --
 ALTER TABLE `user_groups`
-  MODIFY `ugroup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `ugroup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- Constraints for dumped tables

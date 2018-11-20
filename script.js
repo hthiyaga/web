@@ -479,7 +479,7 @@ $(document).on('click','.group_details', function(e){
                   success: function(data){ 
                       console.log(data);
 
-                      if(data == '20'){
+                      if(data == 20){
 
                         str+= "<i class='far fa-trash-alt delete-cmt' data-id="+ post_id + "></i>";
                       }

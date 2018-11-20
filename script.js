@@ -85,6 +85,67 @@ $(document).on('click','.group_details', function(e){
     
       str+= "</fieldset>";
       str+= "</form></div>";
+              str+="<i class='fas fa-code' data-toggle='modal' data-target='#myModal'></i>";
+    str+="<div class='modal' id='myModal' style='margin-top:-20px;'>";
+    str+= "<div class='modal-dialog' > ";
+    str+= "<div class='modal-content'>";
+    str+= "<div class='modal-header'>";
+    str+= "<h5 class='modal-title'>code snippet</h5>";
+    str+= "<button class='close' data-dismiss='modal'>&times;</button>";
+    str+="</div>";
+    str+= "<div class='modal-body'>";
+    str+= "<textarea style='width:80%;'  id='content' name='code'  placeholder='Enter your code Geek...!'  rows='7' cols='100'  required></textarea>";
+    str+= "</div>";
+    str+= "<div class='modal-footer'>";
+    str+= "<input type='submit' style='margin-top:0px;'class='btn btn-primary submit_code' id="+ group_id+"  name='pos' value='Post' />";
+    str+= "<button class='btn btn-secondary' data-dismiss='modal'>close</button>"; 
+    str+= "</div>"; 
+    str+= "</div>";
+    str+= "</div>"; 
+    str+= "</div>";
+    // image upload to posts
+    str+= "<i class='fas fa-camera' data-toggle='modal' data-target='#myModal2'></i>";
+    str+="<div class='modal' id='myModal2' >";
+    str+= "<div class='modal-dialog'> ";
+    str+= "<div class='modal-content'>";
+    str+= "<div class='modal-header'>";
+    str+= "<h5 class='modal-title'>Upload Image</h5>";
+    str+= "<button class='close' data-dismiss='modal'>&times;</button>";
+    str+="</div>";
+    str+= "<div class='modal-body'>";
+    str+="<form class='form' action = 'upload.php' method='post' enctype='multipart/form-data'>";
+    str+="<input type='file' class='btn btn-light' name='img' id='file' value='choose'/>";
+    str+= "</div>";
+    str+= "<div class='modal-footer'>";
+    str+= "<input type='submit' id="+ group_id+" style='margin-top:0px;'class='btn btn-primary upload_image' name='submit' value='Upload' />";
+    str+="</form>";
+    str+= "<button class='btn btn-secondary' data-dismiss='modal'>close</button>"; 
+    str+= "</div>"; 
+    str+= "</div>";
+    str+= "</div>"; 
+    str+= "</div>";
+    
+    //image upload from url
+    str+="<i class='fas fa-link' data-toggle='modal' data-target='#myModal3'></i>";
+    str+="<div class='modal' id='myModal3' >";
+    str+= "<div class='modal-dialog'> ";
+    str+= "<div class='modal-content'>";
+    str+= "<div class='modal-header'>";
+    str+= "<h5 class='modal-title'>Image URL</h5>";
+    str+= "<button class='close' data-dismiss='modal'>&times;</button>";
+    str+="</div>";
+    str+= "<div class='modal-body'>";
+    str+="<form class='form' action = 'upload.php' method='post' enctype='multipart/form-data'>";
+    str+="<input type='text' size='58'  id='imglink' name='imglink'/>";
+    str+= "</div>";
+    str+= "<div class='modal-footer'>";
+    str+= "<input type='submit' id="+ group_id+" style='margin-top:0px;'class='btn btn-primary upload_url' name='submit' value='Upload' />";
+    str+="</form>";
+    str+= "<button class='btn btn-secondary' data-dismiss='modal'>close</button>"; 
+    str+= "</div>"; 
+    str+= "</div>";
+    str+= "</div>"; 
+    str+= "</div>";
      
       str+= "<div id='posts'>";
 
@@ -117,7 +178,10 @@ $(document).on('click','.group_details', function(e){
       str+= "</form></div>";
       str+= "<br>";
        //str+="<button class='btn btn-primary' data-toggle='modal' data-target='#myModal'>code</button>";
-    str+="<i class='fas fa-code' data-toggle='modal' data-target='#myModal'></i>";
+
+        if(obj["messages"][0]["archive_action"] != "archive")
+        {
+          str+="<i class='fas fa-code' data-toggle='modal' data-target='#myModal'></i>";
     str+="<div class='modal' id='myModal' style='margin-top:-20px;'>";
     str+= "<div class='modal-dialog' > ";
     str+= "<div class='modal-content'>";
@@ -145,19 +209,42 @@ $(document).on('click','.group_details', function(e){
     str+= "<button class='close' data-dismiss='modal'>&times;</button>";
     str+="</div>";
     str+= "<div class='modal-body'>";
-    str+="<form class='form' action = 'userprofile.php'id="+ group_id+" method='post' enctype='multipart/form-data'>";
-    str+="<input type='file' class='btn btn-light'name='img' value='choose'/>";
+    str+="<form class='form' action = 'upload.php' method='post' enctype='multipart/form-data'>";
+    str+="<input type='file' class='btn btn-light' name='img' id='file' value='choose'/>";
     str+= "</div>";
     str+= "<div class='modal-footer'>";
-    str+= "<input type='submit' style='margin-top:0px;'class='btn btn-primary upload_image' name='submit' value='Upload' />";
+    str+= "<input type='submit' id="+ group_id+" style='margin-top:0px;'class='btn btn-primary upload_image' name='submit' value='Upload' />";
     str+="</form>";
     str+= "<button class='btn btn-secondary' data-dismiss='modal'>close</button>"; 
     str+= "</div>"; 
     str+= "</div>";
     str+= "</div>"; 
     str+= "</div>";
-      
+    
+    //image upload from url
+    str+="<i class='fas fa-link' data-toggle='modal' data-target='#myModal3'></i>";
+    str+="<div class='modal' id='myModal3' >";
+    str+= "<div class='modal-dialog'> ";
+    str+= "<div class='modal-content'>";
+    str+= "<div class='modal-header'>";
+    str+= "<h5 class='modal-title'>Image URL</h5>";
+    str+= "<button class='close' data-dismiss='modal'>&times;</button>";
+    str+="</div>";
+    str+= "<div class='modal-body'>";
+    str+="<form class='form' action = 'upload.php' method='post' enctype='multipart/form-data'>";
+    str+="<input type='text' size='58'  id='imglink' name='imglink'/>";
+    str+= "</div>";
+    str+= "<div class='modal-footer'>";
+    str+= "<input type='submit' id="+ group_id+" style='margin-top:0px;'class='btn btn-primary upload_url' name='submit' value='Upload' />";
+    str+="</form>";
+    str+= "<button class='btn btn-secondary' data-dismiss='modal'>close</button>"; 
+    str+= "</div>"; 
+    str+= "</div>";
+    str+= "</div>"; 
+    str+= "</div>";
 
+        }
+    
 
       
       obj['messages'].forEach(function(e){
@@ -193,7 +280,19 @@ $(document).on('click','.group_details', function(e){
         str+= "<pre style='background-color:#ebebe0; border-left: 1px solid black; margin-left: 5px;'><code >"+e['code_content']+"</code></pre>";
 
       }
-      
+
+      else if(e['image_content']!='')
+    {
+
+      str+= "<img width='100' height='100' src ='upload/"+e['image_content']+"' alt= 'ddp'><br>";
+    }
+
+    else if(e['link_content']!='')
+    {
+      str+="<a href='"+e['link_content']+"'>"+e['link_content']+"</a><br>";
+      str+= "<img width='100' height='100' src ='"+e['link_content']+"' alt= 'ddp'><br>";
+    }
+
       var post_id= e['post_id'];
 
       //userlike
@@ -719,7 +818,7 @@ $(document).on('click','.delete-cmt', function(e){
     success: function(data){
       console.log(data);
       $("#dis"+post_id).remove();
-      
+
 
     }
 
@@ -737,6 +836,11 @@ $(document).on('click','.arch', function(e){
    if ($clicked_btn.hasClass('fa-archive')) {
     action = 'archive';
     $(".submit_post").attr('disabled', 'disabled');
+    $(".submit_code").attr('disabled', 'disabled');
+    $(".upload_image").attr('disabled', 'disabled');
+     $(".invite-users").attr('disabled', 'disabled');
+     $(".upload_url").attr('disabled', 'disabled');
+    
     $('.like-btn').prop('disabled', true);
     $('.dislike-btn').prop('disabled', true);
     $(".submit_cmt").attr('disabled', 'disabled');
@@ -745,6 +849,10 @@ $(document).on('click','.arch', function(e){
   else if($clicked_btn.hasClass('fa-unlock')){
     action = 'unarchive';
     $(".submit_post").removeAttr("disabled");
+    $(".submit_code").removeAttr("disabled");
+    $(".upload_image").removeAttr("disabled");
+    $(".upload_url").removeAttr("disabled");
+
     $('.like-btn').prop('disabled', false);
     $('.dislike-btn').prop('disabled', false);
     $(".submit_cmt").removeAttr('disabled');

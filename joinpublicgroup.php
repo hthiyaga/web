@@ -31,7 +31,9 @@
      $join=$join."Select Group:";
      if($user_id != '20') {
 
-        $sql = "SELECT group_name,privacy FROM groups WHERE privacy='public' and group_name!='Global' or owner_id='$user_id'";
+        // $sql = "SELECT group_name,privacy FROM groups WHERE privacy='public' and group_name!='Global' or owner_id='$user_id'";
+
+        $sql = "SELECT groups.group_name,groups.privacy FROM groups JOIN archive_info  WHERE  groups.group_name!='Global' and archive_info.group_id = groups.group_id and archive_info.archive_action ='unarchive' and groups.owner_id = '$user_id'";
      }
      else{
               $sql = "SELECT group_name,privacy FROM groups";

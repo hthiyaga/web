@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2018 at 06:54 AM
+-- Generation Time: Nov 20, 2018 at 06:24 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -20,7 +20,6 @@ SET time_zone = "+00:00";
 CREATE DATABASE /*!32312 IF NOT EXISTS*/ `web_prj` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
 USE `web_prj`;
-
 
 --
 -- Database: `web_prj`
@@ -44,18 +43,9 @@ CREATE TABLE `archive_info` (
 
 INSERT INTO `archive_info` (`arch_id`, `group_id`, `archive_action`) VALUES
 (6, 1, 'unarchive'),
-(7, 5, 'unarchive'),
 (8, 2, 'unarchive'),
 (9, 3, 'unarchive'),
-(10, 4, 'unarchive'),
-(11, 9, 'unarchive'),
-(13, 10, 'unarchive'),
-(14, 11, 'unarchive'),
-(15, 12, 'unarchive'),
-(16, 13, 'unarchive'),
-(17, 14, 'unarchive'),
-(18, 15, 'unarchive'),
-(19, 16, 'archive');
+(10, 4, 'unarchive');
 
 -- --------------------------------------------------------
 
@@ -194,8 +184,7 @@ INSERT INTO `users` (`user_id`, `user_name`, `email_id`, `password`, `user_image
 (5, 'Lighting McQueen', 'kachow@rusteze.com', '@mcqueen', '', NULL, ''),
 (6, 'Hari T', 'hari', 'hari', '6.png', 'yes', 'yes'),
 (7, 'Saketh K', 'saketh', 'saketh', '', 'yes', ''),
-(20, 'admin', 'admin', 'admin', '', 'yes', 'yes'),
-(21, 'Mack Truck', 'mack@rusteze.com', '@mack', '', 'yes', '');
+(20, 'admin', 'admin', 'admin', '', 'yes', 'yes');
 
 -- --------------------------------------------------------
 
@@ -232,8 +221,7 @@ INSERT INTO `user_groups` (`ugroup_id`, `user_id`, `group_id`) VALUES
 (120, 6, 4),
 (121, 20, 4),
 (122, 20, 2),
-(123, 20, 3),
-(146, 21, 1);
+(123, 20, 3);
 
 --
 -- Indexes for dumped tables

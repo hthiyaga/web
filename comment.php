@@ -303,7 +303,8 @@ if(isset($_GET['getnames'])){
 
 
 if(isset($_POST['admin'])){ 
-
+  echo "hi";
+    die();
     $user_id = "admin".$_SESSION['user_id'];
     
 

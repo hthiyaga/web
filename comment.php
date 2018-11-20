@@ -415,9 +415,44 @@ if(isset($_POST['admin'])){
 
           }
 
+}
 
-  
 
- }
+//image as link
+ if (isset($_POST['link'])){
+     $data =  $_POST['link'];
+
+    
+    $group_id = $data['group_id'];
+    $imgurl = htmlspecialchars(mysqli_real_escape_string($dbc,$data['imgurl']));
+    $user_id = $_SESSION['user_id'];
+
+
+     $insert = "INSERT INTO posts (user_id,link_content,post_timestamp,group_id)VALUES ('$user_id','$imgurl',NOW(),'$group_id')";
+
+     $run = mysqli_query($dbc,$insert);
+
+          if($run){
+          // echo "posted to timeline";
+          $update = "update users set posts='yes' where user_id='$user_id'";
+          $r_update=mysqli_query($dbc,$update);
+
+         }
+
+        $g_posts = "SELECT * FROM posts INNER JOIN users  WHERE posts.group_id='$group_id' and users.user_id=posts.user_id and users.posts = 'yes' and posts.link_content = '$imgurl' and posts.post_timestamp = NOW()";
+          $r_posts =  mysqli_query($dbc,$g_posts);
+
+          if($r_posts->num_rows>0){
+             while($row_posts=mysqli_fetch_assoc($r_posts)){ 
+            $pos['messages'][] = $row_posts;
+
+        }
+
+         echo json_encode($pos);
+          }
+
+
+}
+
 
  ?>

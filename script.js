@@ -474,7 +474,7 @@ $(document).on('click','.group_details', function(e){
                   async:false,
                   url:'comment.php',
                   type: 'post',
-                  data: 'admin',
+                  data:{ 'admin':0},
                   dataType: 'text',
                   success: function(data){ 
                       console.log(data);

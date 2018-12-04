@@ -141,15 +141,77 @@ include ("./func.php");
    global $dbc;
 
    echo "<div id = 'displayposts'>";
+  
    
   if(isset($_GET['id'])){
-     $user_id =$_GET['id'];
+     $cuser_id =$_GET['id'];
+     $suser_id = $_SESSION['user_id'];
+     $u_chats = "SELECT * FROM `chats` WHERE chat_user_id='$cuser_id$suser_id' or chat_user_id='$suser_id$cuser_id'  ORDER BY chat_id DESC";
+ 
+   
+     $r_chats =  mysqli_query($dbc,$u_chats);
+      while($row_chats=mysqli_fetch_array($r_chats))
+      {
+          $chat_id = $row_chats['chat_id'];
+         $user_id = $row_chats['user_id'];
+         $content = $row_chats['chat_content'];
+         $chat_tstamp = $row_chats['chat_timestamp'];
+
+       $user="SELECT * FROM `users` WHERE user_id='$user_id' and chat='yes'";
+    $r_user= mysqli_query($dbc,$user);
+      while($row_user=mysqli_fetch_array($r_user)) {
+               $user_name = $row_user['user_name'];
+              
+              if($row_user['user_image']==""){
+                $dp="";
+                $dp=$dp."default.jpg";
+               
+
+              }
+
+              else{
+
+                $dp =$row_user['user_image'];
+              }
+           
+        }
+
+       
+
+   if($r_chats){
+    echo "<div id='fetchchat'>";
+     echo "<br>";
+     echo "<div>";
+       echo "<img width='40' height='40' src ='img/$dp' alt= 'ddp'>";
+       echo "</div><br>";
+       echo "<div id= 'chats' style='float:left;' >";
+       echo "<H6><a href='userprofile.php?'>$user_name</a></H6>";
+       echo "</div>";
+       echo "<p id='tstamp' style='margin-left:100px;'>$chat_tstamp</p>";
+       echo "<p>$content</p>";
+       echo "</div>";
+   }
+  
+      
+      
+          
+   
+
+
+      }
+
+   
+
+
+  
      echo"<div id= 'chatdis'>";
-     echo"<form method='POST' id = 'post-form".$user_id."'>";
+     echo"<form method='POST' class='formchat' id = 'post-form".$cuser_id."'>";
      echo"<textarea style='width:100%;'  id='content'name='content' placeholder='Type something.... :)'  rows='2' cols='100' required></textarea>";
-     echo"<input type='submit' style='margin-top:-50px;float:right;margin-right:-75px;'class='btn btn-primary submit_post' id=". $user_id ."  name='pos' value='Send' /></form>";
+     echo"<input type='submit' style='margin-top:-50px;float:right;margin-right:-75px;'class='btn btn-primary submit_chat' id=". $cuser_id ."  name='chat' value='Send' /></form>";
+
      echo"</div>";
       
+   
     }
      else{
     echo" <div id='index'>";
@@ -178,7 +240,7 @@ echo "</div>";
     </div>
     </div>
      <script src="script.js"></script>
-     <script src="pag.js"></script>
+     <script src="chat.js"></script>
    
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>

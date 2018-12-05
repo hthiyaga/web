@@ -28,6 +28,49 @@ var content = $('textarea[name=content]').val();
 });
 
 
+$(document).on('click','.gravatar', function(e){ 
+e.preventDefault();
+ $.ajax({ 
+
+    url:'chatform.php',
+    type: 'post',
+    data:{ 'gravatar':0},
+    dataType: 'text',
+
+    success: function(data){
+
+
+    	console.log(data);
+    	  location.reload();
+    	
+    }
+
+
+ });
+
+});
+
+$(document).on('click','.default', function(e){ 
+e.preventDefault();
+ $.ajax({ 
+
+    url:'chatform.php',
+    type: 'post',
+    data:{ 'default':0},
+    dataType: 'text',
+
+    success: function(data){
+
+
+    	console.log(data);
+    	  location.reload();
+    	
+    }
+
+
+ });
+
+});
 
 
 

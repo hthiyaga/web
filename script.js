@@ -263,7 +263,14 @@ $(document).on('click','.group_details', function(e){
       str+= "<div id='posts'>";
       str+= "<div id='dis"+e['post_id']+"' class='dis'>";
       str+= "<div>";
+      if(e['img_num'] != '1'){
       str+= "<img width='40' height='40' src ='img/"+$dp+"' alt= 'ddp'>";
+      }
+
+      else{
+
+        str+= "<img width='40' height='40' src ='"+$dp+"' alt= 'ddp'>";
+      }
       str+= "</div><br>";
       str+= "<div id= 'posts' style='float:left;' >";
       str+= "<H6><a href='allprofile.php?id="+e['user_id']+"'>"+ e['user_name']+"</a></H6>";
@@ -442,7 +449,15 @@ $(document).on('click','.group_details', function(e){
                        }
 
                    str+="<div style='float:left; width:25%' >";
+                   if(e['img_num'] != '1'){
                    str+="<img width='20' height='20' src ='img/"+$dp+"' alt= 'dcdp'></img>";
+                    }
+
+                   else{
+
+                  str+= "<img width='20' height='20' src ='"+$dp+"' alt= 'dcdp'>";
+                      }
+                  
                    str+="</div>";
                    str+="<div id='readcomment'>";
                    str+="<p><font color='blue'>"+ e['user_name']+"</font> says:&nbsp;&nbsp;";
@@ -474,7 +489,7 @@ $(document).on('click','.group_details', function(e){
                   async:false,
                   url:'comment.php',
                   type: 'post',
-                  data:{ 'admin':0},
+                  data: {'admin':0},
                   dataType: 'text',
                   success: function(data){ 
                       console.log(data);
@@ -653,7 +668,14 @@ $(document).on('click','.submit_post', function(e){
     
       str+= "<div id='dis"+e['post_id']+"' class='dis'>";
       str+= "<div>";
+      if(e['img_num'] != '1'){
       str+= "<img width='40' height='40' src ='img/"+$dp+"' alt= 'ddp'>";
+      }
+
+      else{
+
+        str+= "<img width='40' height='40' src ='"+$dp+"' alt= 'ddp'>";
+      }
       str+= "</div><br>";
       str+= "<div id= 'posts' style='float:left;' >";
       str+= "<H6><a href='userprofile.php?'>"+ e['user_name']+"</a></H6>";

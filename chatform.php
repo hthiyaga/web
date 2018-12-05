@@ -16,13 +16,7 @@ ini_set('display_errors', 1);
          $cuser_id = $data['cuser_id'];
         $content =htmlspecialchars(mysqli_real_escape_string($dbc,$data['content']));
 
-      
-      
-
-
-        
-   
-        $insert = "insert into chats(user_id, chat_content, chat_timestamp, chat_user_id) values('$user_id','$content', NOW(),$cuser_id"."$user_id)";
+     $insert = "insert into chats(user_id, chat_content, chat_timestamp, chat_user_id) values('$user_id','$content', NOW(),$cuser_id"."$user_id)";
      
         $run = mysqli_query($dbc,$insert);
 
@@ -42,5 +36,35 @@ ini_set('display_errors', 1);
         }
    
        }
+
+if(isset($_POST['gravatar'])){ 
+
+ $mail_id = $_SESSION['email_id'];
+ $user_id = $_SESSION['user_id'];
+ $url = 'https://www.gravatar.com/avatar/';
+    $url .= md5( strtolower( trim( $mail_id ) ) );
+
+    $sql = "update `users` set user_image = '$url' where user_id='$user_id'";
+    $r_update=mysqli_query($dbc,$sql);
+
+     $sql1 = "update `users` set img_num = '1' where user_id='$user_id'";
+    $r_update1=mysqli_query($dbc,$sql1);
+ 
+}
+
+
+if(isset($_POST['default'])){ 
+
+ $mail_id = $_SESSION['email_id'];
+ $user_id = $_SESSION['user_id'];
+
+
+    $sql = "update `users` set user_image = '' where user_id='$user_id'";
+    $r_update=mysqli_query($dbc,$sql);
+
+     $sql1 = "update `users` set img_num = 0 where user_id='$user_id'";
+    $r_update1=mysqli_query($dbc,$sql1);
+ 
+}
 
 ?>

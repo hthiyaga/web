@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2018 at 05:39 AM
+-- Generation Time: Dec 11, 2018 at 07:06 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -17,7 +17,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-
 CREATE DATABASE /*!32312 IF NOT EXISTS*/ `web_prj` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
 USE `web_prj`;
@@ -233,23 +232,24 @@ CREATE TABLE `users` (
   `img_num` text NOT NULL,
   `posts` text,
   `chat` text NOT NULL,
-  `comments` text NOT NULL
+  `comments` text NOT NULL,
+  `security` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `email_id`, `password`, `user_image`, `img_num`, `posts`, `chat`, `comments`) VALUES
-(1, 'Tow Mater', 'mater@rsprings.gov', '@mater', '1.png', '0', 'yes', 'yes', 'yes'),
-(2, 'Sally Carrera', 'porsche@rsprings.gov', '@sally', '', '0', NULL, '', ''),
-(3, 'Doc Hudson', 'hornet@rsprings.gov', '@doc', 'https://www.gravatar.com/avatar/936cb3b6e701c67af2337eac72f8451d', '1', 'yes', 'yes', ''),
-(4, 'Finn McMissile', 'topsecret@agent.org', '@mcmissile', '', '0', NULL, '', ''),
-(5, 'Lighting McQueen', 'kachow@rusteze.com', '@mcqueen', '', '0', NULL, '', ''),
-(6, 'Hari T', 'hari', 'hari', '', '0', 'yes', 'yes', 'yes'),
-(7, 'Saketh K', 'saketh', 'saketh', '', '0', 'yes', '', ''),
-(20, 'admin', 'admin', 'admin', '', '0', 'yes', '', 'yes'),
-(22, 'hsquare', 'hariharan0907@gmail.com', 'hari', '', '0', 'NULL', '', '');
+INSERT INTO `users` (`user_id`, `user_name`, `email_id`, `password`, `user_image`, `img_num`, `posts`, `chat`, `comments`, `security`) VALUES
+(1, 'Tow Mater', 'mater@rsprings.gov', '@mater', '1.png', '0', 'yes', 'yes', 'yes', 0),
+(2, 'Sally Carrera', 'porsche@rsprings.gov', '@sally', '', '0', NULL, '', '', 0),
+(3, 'Doc Hudson', 'hornet@rsprings.gov', '@doc', 'https://www.gravatar.com/avatar/936cb3b6e701c67af2337eac72f8451d', '1', 'yes', 'yes', '', 0),
+(4, 'Finn McMissile', 'topsecret@agent.org', '@mcmissile', '', '0', NULL, '', '', 0),
+(5, 'Lighting McQueen', 'kachow@rusteze.com', '@mcqueen', '', '0', NULL, '', '', 0),
+(6, 'Hari T', 'hari', 'hari', '', '0', 'yes', 'yes', 'yes', 0),
+(7, 'Saketh K', 'saketh', 'saketh', '', '0', 'yes', '', '', 0),
+(20, 'admin', 'admin', 'admin', '', '0', 'yes', '', 'yes', 0),
+(22, 'hsquare', 'hariharan0907@gmail.com', 'hari', '', '0', 'NULL', '', '', 0);
 
 -- --------------------------------------------------------
 

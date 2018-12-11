@@ -21,6 +21,7 @@ var content = $('textarea[name=content]').val();
 
     	console.log(data);
     	$('textarea[name=content]').val('');
+         location.reload();
     }
 
  });
@@ -72,6 +73,47 @@ e.preventDefault();
 
 });
 
+//security
+
+$(document).on('click','.secured', function(e){ 
+e.preventDefault();
+
+var user_id = e.currentTarget.id;
+$clicked_btn = $(this);
+  if ($clicked_btn.hasClass('fa-toggle-off')) {
+    action = 'on';
+  } else if($clicked_btn.hasClass('fa-toggle-on')){
+    action = 'off';
+  }
+ $.ajax({ 
+
+    url:'chatform.php',
+    type: 'post',
+    data: {
+      'action': action,
+      'user_id': user_id
+    },
+    dataType: 'text',
+
+    success: function(data){
+       if (action == "on") {
+        $clicked_btn.removeClass('fa-toggle-off');
+        $clicked_btn.addClass('fa-toggle-on');
+      } else if(action == "off") {
+        $clicked_btn.removeClass('fa-toggle-on');
+        $clicked_btn.addClass('fa-toggle-off');
+      }
+
+        console.log(data);
+        location.reload();
+         
+        
+    }
+
+
+ });
+
+});
 
 
 });

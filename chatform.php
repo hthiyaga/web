@@ -67,4 +67,31 @@ if(isset($_POST['default'])){
  
 }
 
+
+if (isset($_POST['action'])) { 
+
+$user_id = $_POST['user_id'];
+  // $group_id = $_POST['group_id'];
+  $action = $_POST['action'];
+  switch ($action) {
+    case 'on':
+    $sql="update users set security='1' where user_id ='$user_id '";
+            
+              mysqli_query($dbc, $sql);
+              echo "success1";
+             
+         break;
+
+    case 'off':
+
+      $sql="update users set security='0' where user_id ='$user_id '";
+            
+              mysqli_query($dbc, $sql);
+              echo"success0";
+             
+         break;
+
+   }
+}
+
 ?>

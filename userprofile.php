@@ -26,12 +26,13 @@
 
     global $dbc;
     $mail = $_SESSION['email_id'];
-      $user="SELECT user_name,user_id,user_image,img_num FROM `users` WHERE email_id = '$mail' ";
+      $user="SELECT user_name,user_id,user_image,img_num,security FROM `users` WHERE email_id = '$mail' ";
        $r_user= mysqli_query($dbc,$user);
        $row_user=mysqli_fetch_array($r_user);
        $user_name = $row_user['user_name'];
        $user_id = $row_user['user_id'];
        $img_num = $row_user['img_num'];
+       $security = $row_user['security'];
        if($row_user['user_image']==""){
                 $dp="";
                 $dp=$dp."default.jpg";
@@ -111,6 +112,15 @@ else{
        $profile=$profile."<a style='margin-top:50px;margin-left:50px;' href=home.php <i class='fas fa-chevron-left' ></i></a>";
        $profile=$profile."<H4 style='text-align:center; color:teal; margin-top:0px;'>User Profile</H4><br>";
        $profile=$profile."<div id='aligns'>";
+       $profile=$profile."<label>Security</label>";
+       if($security =='0'){
+        $profile=$profile."  <i style='color:red;' id='".$user_id."'class='fas fa-toggle-off secured'></i><br><br>";
+       }
+       else{
+        
+        $profile=$profile."  <i style='color:green;' id='".$user_id."'class='fas fa-toggle-on secured'></i><br><br>";
+
+       }
        $profile=$profile."<label>Username:</label>";
        $profile=$profile." $user_name<br><br>";
        $profile=$profile."<label>Email:</label>";

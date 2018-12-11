@@ -3,7 +3,7 @@
 <html>
 <head>
 <title>Login</title>
-<link rel ="stylesheet"  href="css\style.css">
+<link rel ="stylesheet"  href="css/style.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
         crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
@@ -32,12 +32,12 @@ Email:<br>
 <br>
  Password:<br>
 <i class="fas fa-key" style="margin-right: 5px;"></i> <input type="password" name="password" size="30" value="" />
-<p> 
+
 <br>
 <div class="g-recaptcha" data-sitekey="6Ld6Q30UAAAAAGM7NEX7UULYA38U1atfuZR-_rTj"></div><br>
  <input type="submit" class="btn btn-success " style="color:black; font-weight:bold;"  name="submit" value="Login" />
  <a href="signup.php" class="btn btn-primary" style="color:black; font-weight:bold;">Signup</a>
- </p>
+
 </div>
 </div>
  </form>

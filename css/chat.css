@@ -6,7 +6,11 @@ margin-top:2px;
 }
 
 
+.formchat{
 
+
+	position: fixed;
+}
 
 .div1{
 	  float: left;
@@ -32,7 +36,8 @@ margin-top:2px;
 #chatdis{
 
 
-	margin-top: 80%;
+	margin-top: 10px;
+	position: fixed;
 }
 .modal{
 	margin-top:250px;
@@ -127,6 +132,10 @@ margin-top: 250px;
 	cursor:pointer;
 }
 
+#ddp{
+
+	border-radius: 20px;
+}
 
 .fa-camera{
 
@@ -148,4 +157,19 @@ pre{
 
 	 overflow: auto;
    
+}
+
+#fetchchat{
+
+
+	height: 10%;
+	
+}
+
+#fc{
+	background-color: whitesmoke;
+    margin-top: -13px;	
+	overflow: auto;
+	 width: 290%;
+    height: 480px;
 }

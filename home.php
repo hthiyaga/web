@@ -27,6 +27,48 @@ if(!session_start())
 }
 if(!isset($_SESSION['email_id']))
   header("Location:index.php");
+
+require "Authenticator.php";
+require_once("./mysqli_connect.php");
+$mail_id =$_SESSION['email_id'];
+$query = "SELECT * FROM `users` WHERE  email_id ='$mail_id'";
+
+$result = mysqli_query($dbc, $query);
+$affected_rows = mysqli_num_rows($result);
+
+        
+        
+        
+        if($affected_rows == 1){
+           $rowg= mysqli_fetch_array($result);
+         
+           $security = $rowg['security'];
+           
+
+      
+            if($security != '0'){
+
+              if ($_SERVER['REQUEST_METHOD'] != "POST") {
+    header("location: index.php");
+    die();
+}
+$Authenticator = new Authenticator();
+
+
+
+
+$checkResult = $Authenticator->verifyCode($_SESSION['auth_secret'], $_POST['code'], 2);    // 2 = 2*30sec clock tolerance
+
+if (!$checkResult) {
+    $_SESSION['failed'] = true;
+    header("location: secondfactor.php");
+    die();
+} 
+          
+            }
+          }
+
+
 ?>
 <?php
 

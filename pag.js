@@ -200,7 +200,7 @@ $(document).on('click', '.upload_image', function(e){
   var image_extension = image_name.split(".").pop().toLowerCase();
   if(jQuery.inArray(image_extension,['gif','png','jpg','jpeg','pdf','docx','xls','txt']) == -1)
   {
-    alert("Invalid image File");
+    alert("Invalid File");
   }
   var image_size=property.size;
   if(image_size > 2000000){

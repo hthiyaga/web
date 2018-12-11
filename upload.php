@@ -18,7 +18,7 @@ ini_set('display_errors', 1);
     $actual =$_FILES["file"]["name"];
   	$extension =end($test);
 
-    if($extension != 'pdf' && $extension != 'txt' ){
+    if($extension != 'pdf' && $extension != 'txt' && $extension != 'docx' ){
 
       $name = rand(100,999).time().".".$extension;
     }
@@ -30,7 +30,7 @@ ini_set('display_errors', 1);
   	$location = './upload/'.$name;
   	move_uploaded_file($_FILES["file"]["tmp_name"], $location);
 
-    if($extension != 'pdf' && $extension != 'txt'  ){
+    if($extension != 'pdf' && $extension != 'txt' && $extension != 'docx' ){
       $insert = "INSERT INTO posts (user_id,image_content,post_timestamp,group_id)VALUES ('$user_id','$name',NOW(),'$group_id')";
 
      $run = mysqli_query($dbc,$insert);

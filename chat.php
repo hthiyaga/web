@@ -172,6 +172,7 @@ include ("./func.php");
     $r_user= mysqli_query($dbc,$user);
       while($row_user=mysqli_fetch_array($r_user)) {
                $user_name = $row_user['user_name'];
+               $img_num = $row_user['img_num'];
               
               if($row_user['user_image']==""){
                 $dp="";
@@ -201,7 +202,13 @@ echo "<div id='fetchchat".$chat_id."' style='float:left;margin-left:10px;height:
 } 
      
      echo "<div>";
-       echo "<img width='40' height='40' src ='img/$dp' id='ddp' alt= 'ddp' style='float:left; margin-top:27px;' >";
+     if($img_num != 1){
+         echo "<img width='40' height='40' src ='img/".$dp."' alt= 'ddp' style='float:left; margin-top:27px;'>";
+      }
+     else{
+       echo "<img width='40' height='40' src ='".$dp."'  id='ddp' alt= 'ddp' style='float:left; margin-top:27px;'>";
+     }
+       
        echo "</div><br>";
        if( $chat_user_id == $cuser_id.$suser_id)
        {

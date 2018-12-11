@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>Home</title>
-<link rel ="stylesheet" a href="css\home.css">
+<link rel ="stylesheet"  href="css\home.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
         crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
@@ -26,7 +26,7 @@ if(!session_start())
   session_start();
 }
 if(!isset($_SESSION['email_id']))
-  header("Location:login.php");
+  header("Location:index.php");
 ?>
 <?php
 
@@ -157,7 +157,9 @@ include ("./func.php");
 
         
        ?>
-      <textarea class ="search"  id = "search" placeholder="Search.."name="search" rows="2"></textarea>
+      
+       <H5><a class="chat" href="chat.php" style="color:#007bff;"> Chat </a></H5>
+       <textarea class ="search"  id = "search" placeholder="Search.."name="search" rows="2"></textarea>
        <div id ='searchbar' style="width: 100%;"></div>
        
   </H6>

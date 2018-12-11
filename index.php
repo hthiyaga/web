@@ -3,7 +3,7 @@
 <html>
 <head>
 <title>Login</title>
-<link rel ="stylesheet" a href="css\style.css">
+<link rel ="stylesheet"  href="css\style.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
         crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
@@ -14,13 +14,13 @@
 <body >
 
 <div  class= "back">
-<h1 align="center"></h1>
+
 <label class="errmsg">
 
 
 </label>
 <form method="POST" >
-<!--   -->
+
  <div class="login">
 <div class="main">
 <b>Enter credentials to login</b>
@@ -39,7 +39,7 @@ Email:<br>
  <a href="signup.php" class="btn btn-primary" style="color:black; font-weight:bold;">Signup</a>
  </p>
 </div>
-
+</div>
  </form>
 
  <?php 
@@ -115,13 +115,22 @@ if(isset($_POST['submit'])){
            $rowg= mysqli_fetch_array($result);
            $user_id = $rowg['user_id'];
            $mail_id = $rowg['email_id'];
+           $security = $rowg['security'];
            $_SESSION['email_id']=$mail_id;
            $_SESSION['user_id']=$user_id;
 
       
-
+            if($security == '0'){
             echo "<div class='main'><br><br><br><br> Login success <br /></div>";
             header("refresh:1; url=home.php");
+            }
+
+            else{
+
+            
+            header("Location:secondfactor.php");
+            }
+           
             
           
             
